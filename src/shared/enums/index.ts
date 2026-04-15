@@ -1,0 +1,49 @@
+export enum InventoryEventType {
+  STOCK_IN = 'STOCK_IN',
+  STOCK_OUT = 'STOCK_OUT',
+  SALE_DEDUCT = 'SALE_DEDUCT',
+  PURCHASE_RETURN = 'PURCHASE_RETURN',
+  SALE_RETURN = 'SALE_RETURN',
+  DAMAGE = 'DAMAGE',
+  ADJUSTMENT = 'ADJUSTMENT',
+}
+
+export enum SaleStatus {
+  DRAFT = 'DRAFT',
+  PAID = 'PAID',
+  CLOSED = 'CLOSED',
+  CANCELLED = 'CANCELLED',
+}
+
+export enum PurchaseStatus {
+  DRAFT = 'DRAFT',
+  RECEIVED = 'RECEIVED',
+  POSTED = 'POSTED',
+  CANCELLED = 'CANCELLED',
+}
+
+export enum PurchaseSourceType {
+  EXTERNAL_SUPPLIER = 'EXTERNAL_SUPPLIER',
+  CENTRAL_WAREHOUSE = 'CENTRAL_WAREHOUSE',
+}
+
+export enum ProductStatus {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+}
+
+export enum TransactionType {
+  SALE_PAYMENT = 'SALE_PAYMENT',
+  CUSTOMER_PAYMENT = 'CUSTOMER_PAYMENT',
+  PURCHASE_PAYMENT = 'PURCHASE_PAYMENT',
+  SUPPLIER_PAYMENT = 'SUPPLIER_PAYMENT',
+  EXPENSE = 'EXPENSE',
+  CASH_IN = 'CASH_IN',
+  CASH_OUT = 'CASH_OUT',
+}
+
+export enum PaymentMethod {
+  CASH = 'CASH',
+  CARD = 'CARD',
+  BANK_TRANSFER = 'BANK_TRANSFER',
+}
