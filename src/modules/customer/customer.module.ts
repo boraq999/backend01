@@ -69,13 +69,25 @@ export class CustomerController {
   }
 
   @Get()
-  findAll() {
-    return this.customerService.findAll();
+  async findAll() {
+    const customers = await this.customerService.findAll();
+    return customers.map(customer => ({
+      ...customer,
+      id: customer.getIdAsString(),
+      balance: parseFloat(customer.balance.toString())
+    }));
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.customerService.findOne(id);
+  async findOne(@Param('id') id: string) {
+    const customer = await this.customerService.findOne(id);
+    if (!customer) return null;
+    
+    return {
+      ...customer,
+      id: customer.getIdAsString(),
+      balance: parseFloat(customer.balance.toString())
+    };
   }
 
   @Put(':id')

@@ -1,30 +1,11 @@
-import { Entity, Column } from 'typeorm';
-import { BaseEntity } from '../../core/base.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { Expense } from './expense.entity';
 import { UuidHelper } from '../../common/uuid.helper';
 import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-
-@Entity('expenses')
-export class Expense extends BaseEntity {
-  @Column({ length: 100 })
-  description: string;
-
-  @Column('decimal', { precision: 10, scale: 2 })
-  amount: number;
-
-  @Column({ length: 50, nullable: true })
-  category: string;
-
-  @Column('text', { nullable: true })
-  notes: string;
-
-  @Column({ type: 'date', name: 'expense_date' })
-  expenseDate: Date;
-}
 
 export class CreateExpenseDto {
   description: string;

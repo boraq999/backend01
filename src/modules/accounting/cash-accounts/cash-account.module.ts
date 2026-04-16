@@ -1,27 +1,11 @@
-import { Entity, Column } from 'typeorm';
-import { BaseEntity } from '../../../core/base.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { CashAccount } from './cash-account.entity';
 import { UuidHelper } from '../../../common/uuid.helper';
 import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-
-@Entity('cash_accounts')
-export class CashAccount extends BaseEntity {
-  @Column({ length: 100 })
-  name: string;
-
-  @Column('decimal', { precision: 10, scale: 2, default: 0 })
-  balance: number;
-
-  @Column({ type: 'boolean', default: true, name: 'is_active' })
-  isActive: boolean;
-
-  @Column('text', { nullable: true })
-  description: string;
-}
 
 export class CreateCashAccountDto {
   name: string;

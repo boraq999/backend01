@@ -290,10 +290,36 @@ async function seed() {
     }
     console.log(`✅ Inserted ${cashAccounts.length} cash accounts`);
 
-    // 6. Generate Purchases (50 purchase orders)
+    // 6. Generate Initial Inventory (Stock In events)
+    console.log('📝 Generating initial inventory...');
+    let inventoryEventCount = 0;
+    
+    for (const product of products) {
+      const initialStock = Math.floor(Math.random() * 100) + 50; // 50-150 units
+      
+      await dataSource.query(
+        `INSERT INTO inventory_events (id, branch_id, event_type, product_id, quantity, reference_type, notes, created_at, updated_at) 
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [
+          toBinary(uuidv7()),
+          branchId,
+          'STOCK_IN',
+          toBinary(product.id),
+          initialStock,
+          'INITIAL_STOCK',
+          'مخزون ابتدائي',
+          now,
+          now,
+        ]
+      );
+      inventoryEventCount++;
+    }
+    console.log(`✅ Inserted ${inventoryEventCount} inventory events`);
+
+    // 7. Generate Purchases (50 purchase orders)
+    // 7. Generate Purchases (50 purchase orders)
     console.log('📝 Generating purchases...');
     let purchaseCount = 0;
-    let inventoryEventCount = 0;
 
     for (let i = 0; i < 50; i++) {
       const purchaseId = uuidv7();
